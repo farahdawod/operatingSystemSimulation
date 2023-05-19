@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Process {
 
     private static int nextProcessID = 1;
-    Object[] PCB;
+    private Object[] PCB;
 
 
     public Process (){
@@ -17,9 +17,15 @@ public class Process {
         return (int) PCB[0];
     }
 
-    public static void changeProcessState(int ID,processState processState){
-
-
+    public Object[] getPCB() {
+        return PCB;
     }
+
+    public void setMemoryBoundaries (int[] memoryBoundaries){PCB[3]=memoryBoundaries;}
+    public int [] getMemoryBoundaries (){return (int[]) PCB[3];}
+
+    public void changeProcessState(processState processState){PCB[1]=processState;}
+
+    public processState getProcessState(){return (processState) PCB[1];}
 
 }

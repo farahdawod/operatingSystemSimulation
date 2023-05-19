@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Word {
     String typeOfDataStored;
-    ArrayList<Object> data;
+    Object data;
 
     public void setTypeOfDataStored(String typeOfDataStored) {
         this.typeOfDataStored = typeOfDataStored;
@@ -12,11 +12,11 @@ public class Word {
         return typeOfDataStored;
     }
 
-    public ArrayList<Object> getData() {
+    public Object getData() {
         return data;
     }
 
-    public Word(String typeOfDataStored, ArrayList<Object> data) {
+    public Word(String typeOfDataStored, Object data) {
         this.typeOfDataStored = typeOfDataStored;
         this.data = data;
     }
