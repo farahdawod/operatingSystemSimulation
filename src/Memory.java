@@ -116,6 +116,7 @@ public class Memory {
         }
         return i < (MEMORY_SIZE / PROCESS_SIZE);
     }
+
     public int[] assignPlaceForProcess(){
         Iterator<Word> memoryIrt=memory.iterator();
         int i=0;
@@ -126,6 +127,7 @@ public class Memory {
         return new int[]{i,i+1,i+2};
 
     }
+
     public void add(String descriptionOfData,Object data, int index){
         Word newData=new Word(descriptionOfData,data);
         memory.add(index, newData);
@@ -133,5 +135,9 @@ public class Memory {
 
     public void addToReadyQueue(Process process) {
         readyQueue.add(process);
+    }
+
+    public void addToBlockedQueue(Process process){
+        blockedQueue.add(process);
     }
 }
