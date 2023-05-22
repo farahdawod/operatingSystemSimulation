@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Memory {
+public class Memory{
     private static final int MEMORY_SIZE = 40;
     private static final int PROCESS_SIZE=3;
 

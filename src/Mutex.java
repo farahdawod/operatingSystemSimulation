@@ -1,13 +1,26 @@
-public class Mutex extends Process{
-    private static boolean semaphore = true; //available
+public class Mutex extends Process {
+    private boolean semaphore; //available
     private int processID;
+    private Resource resource;
 
-    public static boolean isSemaphore() {
+    public Mutex (Resource resource){
+        semaphore = true;
+        this.resource = resource;
+        processID = 0;
+    }
+
+//    public Mutex(int processID, Resource resource){
+//        semaphore = true;
+//        this.processID = processID;
+//        this.resource = resource;
+//    }
+
+    public boolean isSemaphore() {
         return semaphore;
     }
 
-    public static void setSemaphore(boolean semaphore) {
-        Mutex.semaphore = semaphore;
+    public void setSemaphore(boolean semaphore) {
+        this.semaphore = semaphore;
     }
 
     @Override
@@ -27,36 +40,38 @@ public class Mutex extends Process{
         return this.resource;
     }
 
-    @Override
-    public boolean semSignal(Mutex mutex) {
-        if(!isSemaphore()){
-            System.out.println("Another process is using this resource");
-            return isSemaphore();
-        }
-        else{
-
-            semaphore = true;
-            processID = super.getProcessID();
-            return semaphore;
-        }
+    //@Override
+    public void semSignal(){
+        semaphore = true;
+        this.processID=0;
+//        if(!isSemaphore()){
+//            System.out.println("Another process is using this resource");
+//            return isSemaphore();
+//        }
+//        else{
+//            semaphore = true;
+//            processID = super.getProcessID();
+//            return semaphore;
+//        }
     }
 
-    @Override
-    public boolean semWait() {
-        if(processID == super.getProcessID()){
-            if(!semaphore){
-                semaphore = true;
-                processID = 0;
-                return semaphore;
-            }
-            else{
-                System.out.println("Resource is not taken");
-                return false;
-            }
-        }
-        else{
-            System.out.println("Another process is using this resource");
-            return false;
-        }
+    //@Override
+    public void semWait() {
+        semaphore = false;
+//        if(processID == super.getProcessID()){ //wait
+//            if(!semaphore){
+//                semaphore = true;
+//                processID = 0;
+//                return semaphore;
+//            }
+//            else{
+//                System.out.println("Resource is not taken");
+//                return false;
+//            }
+//        }
+//        else{
+//            System.out.println("Another process is using this resource");
+//            return false;
+//        }
     }
 }

@@ -30,7 +30,7 @@ public class Process {
 
     public processState getProcessState(){return (processState) PCB[1];}
 
-    public boolean semWait(){
+    public boolean semWait(Mutex mutex){
         return false;
     }
 

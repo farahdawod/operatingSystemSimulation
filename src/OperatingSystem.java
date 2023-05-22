@@ -4,22 +4,28 @@ import javax.script.ScriptException;
 import java.util.*;
 import java.io.*;
 public class OperatingSystem {
-    Memory memory;
+    Memory memory = new Memory();
     List<Process> processes;
+    Mutex input = new Mutex(Resource.USERINPUT);
+    Mutex output = new Mutex(Resource.USEROUTPUT);
+    Mutex file = new Mutex(Resource.FILE);
+    int timeSlice = 2;     // Time slice for each process
+    int currentTime=0;
 
     public void createProcess(String programPath){
         //each process has 3 words in memory assigned to it.
         Process process= new Process();
         process.setArrivalTime(currentTime);
         //checking if there's place in main memory to give the process its 3 words
-        if (memory.isThereEnoughSpace())
-            process.setMemoryBoundaries(memory.assignPlaceForProcess());
+        if (memory.isThereEnoughSpace()) process.setMemoryBoundaries(memory.assignPlaceForProcess());
         //PCB of process will be placed in the first word that the process owns
-        memory.add("PCB of Process"+process.getProcessID(),process.getPCB(),process.getMemoryBoundaries()[0]);
+        memory.add("PCB of Process "+process.getProcessID(),process.getPCB(),process.getMemoryBoundaries()[0]);
         //lines of code of process will be placed in the second word that the process owns
         memory.add("Lines of code of the process",
                 interpreter(programPath, process),process.getMemoryBoundaries()[1]);
         processes.add(process);
+        RoundRobin();
+
     }
 
     public ArrayList<String> interpreter (String programPath, Process process){
