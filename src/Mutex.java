@@ -19,6 +19,14 @@ public class Mutex extends Process{
         this.processID = processID;
     }
 
+    public void setResource(Resource resource){
+        this.resource = resource;
+    }
+
+    public Resource getResource(){
+        return this.resource;
+    }
+
     @Override
     public boolean semSignal(Mutex mutex) {
         if(!isSemaphore()){

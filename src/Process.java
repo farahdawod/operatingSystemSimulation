@@ -6,7 +6,7 @@ public class Process {
 
     public Process (){
         PCB= new Object[4];
-        PCB[0]=nextProcessID++;
+        PCB[0]=nextProcessID++; //ProcessID
         PCB[1]=processState.NEW;
         PCB[2]=0; //program counter
     }

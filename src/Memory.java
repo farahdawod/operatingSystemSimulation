@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Queue;
+import java.util.*;
 
 public class Memory {
     private static final int MEMORY_SIZE = 40;
@@ -9,102 +6,18 @@ public class Memory {
 
     public static final ArrayList<Word> memory = new ArrayList<>(MEMORY_SIZE);
 
-    Queue<Process> readyQueue, blockedQueue;
+    Queue<Process> readyQueue;
+    Hashtable <Process, Resource> blockedQueue;
 
     public Memory() {
         Word processes=new Word("Processes",new ArrayList<>());
         memory.add(processes);
-        /* readyQueue,blockedQueue=new Queue<Process>() {
-            @Override
-            public boolean add(Process process) {
-                return false;
-            }
+        readyQueue= new LinkedList<>();
+        blockedQueue=new Hashtable<>() ;
+    }
 
-            @Override
-            public boolean offer(Process process) {
-                return false;
-            }
-
-            @Override
-            public Process remove() {
-                return null;
-            }
-
-            @Override
-            public Process poll() {
-                return null;
-            }
-
-            @Override
-            public Process element() {
-                return null;
-            }
-
-            @Override
-            public Process peek() {
-                return null;
-            }
-
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<Process> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] ts) {
-                return null;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> collection) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends Process> collection) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> collection) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> collection) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-        }*/
+    public Queue<Process> getReadyQueue(){
+        return readyQueue;
     }
 
     public boolean isThereEnoughSpace(){
@@ -135,9 +48,36 @@ public class Memory {
 
     public void addToReadyQueue(Process process) {
         readyQueue.add(process);
+        process.changeProcessState(processState.READY);
     }
 
-    public void addToBlockedQueue(Process process){
-        blockedQueue.add(process);
+    public void addToBlockedQueue(Process process, Resource azma) {
+        blockedQueue.put(process, azma);
+        process.changeProcessState(processState.BLOCKED);
+        System.out.println("Processes in Ready Queue: ");
+        for (Process p1 : readyQueue) {
+            System.out.print("Process" + p1.getProcessID() + ", ");
+        }
+        System.out.println("Processes in Blocked Queue: ");
+        Iterator<Process> itrB=blockedQueue.keys().asIterator();
+        while (itrB.hasNext()) {
+            Process p2=itrB.next();
+            System.out.print("Process" + p2.getProcessID() + ", ");
+        }
+
     }
+
+    public void removeFromBlockedQueue(Resource faka){
+        for (Map.Entry<Process, Resource> finder : blockedQueue.entrySet()) {
+            if (finder.getValue().compareTo(faka) == 0) {
+                blockedQueue.remove(finder.getKey(), finder.getValue());
+                addToReadyQueue(finder.getKey());
+                return;
+            }
+        }
+    }
+    public Object getFromMemory(int index){
+        return memory.get(index).data;
+    }
+
 }
