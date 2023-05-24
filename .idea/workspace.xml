@@ -4,28 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88a2c0a5-ac22-403b-8ded-de1702541e59" name="Changes" comment="basics of memory done">
-      <change afterPath="$PROJECT_DIR$/src/Resource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="88a2c0a5-ac22-403b-8ded-de1702541e59" name="Changes" comment="all  basics done">
+      <change afterPath="$PROJECT_DIR$/disk.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/File.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Memory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mutex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mutex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OperatingSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userOutput.java" beforeDir="false" />
-    </list>
-    <list id="49ff7b14-745a-4abe-b83f-e572e02b56c8" name="Changes by Sara" comment="">
       <change beforePath="$PROJECT_DIR$/src/OperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OperatingSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Process.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process.java" afterDir="false" />
     </list>
-    <list id="02f38078-9e0b-4660-b805-50bb0a44e2e0" name="Changes by zeina" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Memory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mutex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mutex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OperatingSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Process.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Process.java" afterDir="false" />
-    </list>
+    <list id="49ff7b14-745a-4abe-b83f-e572e02b56c8" name="Changes by Sara" comment="Changes by Sara" />
+    <list id="02f38078-9e0b-4660-b805-50bb0a44e2e0" name="Changes by zeina" comment="Changes by zeina" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,53 +28,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/OperatingSystem.java">
-      <ranges>
-        <range start1="0" end1="4" start2="0" end2="7" changelist="49ff7b14-745a-4abe-b83f-e572e02b56c8" />
-        <range start1="5" end1="6" start2="8" end2="9" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="7" end1="7" start2="10" end2="15" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="11" end1="11" start2="19" end2="20" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-        <range start1="12" end1="14" start2="21" end2="22" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="15" end1="16" start2="23" end2="24" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="20" end1="20" start2="28" end2="30" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="27" end1="31" start2="37" end2="89" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-        <range start1="33" end1="33" start2="91" end2="290" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Memory.java">
-      <ranges>
-        <range start1="0" end1="4" start2="0" end2="1" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-        <range start1="5" end1="6" start2="2" end2="3" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="11" end1="12" start2="8" end2="10" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-        <range start1="16" end1="107" start2="14" end2="16" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-        <range start1="109" end1="109" start2="18" end2="22" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-        <range start1="137" end1="137" start2="50" end2="67" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-        <range start1="139" end1="141" start2="69" end2="80" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-        <range start1="142" end1="142" start2="81" end2="82" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Mutex.java">
-      <ranges>
-        <range start1="0" end1="2" start2="0" end2="2" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="3" end1="3" start2="3" end2="10" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="4" end1="5" start2="11" end2="18" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="8" end1="10" start2="21" end2="23" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="20" end1="20" start2="33" end2="41" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-        <range start1="21" end1="33" start2="42" end2="55" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="35" end1="52" start2="57" end2="75" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Process.java">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="6" changelist="49ff7b14-745a-4abe-b83f-e572e02b56c8" />
-        <range start1="8" end1="9" start2="10" end2="11" changelist="88a2c0a5-ac22-403b-8ded-de1702541e59" />
-        <range start1="11" end1="11" start2="13" end2="15" changelist="49ff7b14-745a-4abe-b83f-e572e02b56c8" />
-        <range start1="28" end1="29" start2="32" end2="33" changelist="02f38078-9e0b-4660-b805-50bb0a44e2e0" />
-        <range start1="36" end1="36" start2="40" end2="60" changelist="49ff7b14-745a-4abe-b83f-e572e02b56c8" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectId" id="2PxxfMbEvk3yaRhWhT0ub8W99LK" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -150,7 +90,28 @@
       <option name="project" value="LOCAL" />
       <updated>1684501197520</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="all  basics done">
+      <created>1684724953680</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684724953680</updated>
+    </task>
+    <task id="LOCAL-00005" summary="all  basics done">
+      <created>1684724971688</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684724971688</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Changes by zeina">
+      <created>1684724986713</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684724986713</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +128,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="beginning" />
     <MESSAGE value="basics of memory done" />
-    <option name="LAST_COMMIT_MESSAGE" value="basics of memory done" />
+    <MESSAGE value="all  basics done" />
+    <MESSAGE value="Changes by Sara" />
+    <MESSAGE value="Changes by zeina" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by zeina" />
   </component>
 </project>

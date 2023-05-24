@@ -5,34 +5,36 @@ import java.util.*;
 import java.io.*;
 public class OperatingSystem {
     Memory memory = new Memory();
-    List<Process> processes;
+    List<Process> unloadedProcesses;
     Mutex input = new Mutex(Resource.USERINPUT);
     Mutex output = new Mutex(Resource.USEROUTPUT);
     Mutex file = new Mutex(Resource.FILE);
-    int timeSlice = 2;     // Time slice for each process
+    int timeSlice;     // Time slice for each process
     int currentTime=0;
-
+    public OperatingSystem (int timeSlice){
+        this.timeSlice=timeSlice;
+    }
     public void createProcess(String programPath){
         //each process has 3 words in memory assigned to it.
         Process process= new Process();
         process.setArrivalTime(currentTime);
         //checking if there's place in main memory to give the process its 3 words
-        if (memory.isThereEnoughSpace()) process.setMemoryBoundaries(memory.assignPlaceForProcess());
+        if (!memory.isThereEnoughSpace())  unloadedProcesses.add(memory.unloadFromMemory());
+
+        process.setMemoryBoundaries(memory.assignPlaceForProcess());
+
         //PCB of process will be placed in the first word that the process owns
         memory.add("PCB of Process "+process.getProcessID(),process.getPCB(),process.getMemoryBoundaries()[0]);
         //lines of code of process will be placed in the second word that the process owns
         memory.add("Lines of code of the process",
                 interpreter(programPath, process),process.getMemoryBoundaries()[1]);
-        processes.add(process);
+        //processes.add(process);
         RoundRobin();
 
     }
 
     public ArrayList<String> interpreter (String programPath, Process process){
         ArrayList<String> instructions=new ArrayList<>();
-        //7oty el variables ely hatla'eeha fel program hena ya mayar
-        //if u wanna change the datastructure, go ahead
-        Hashtable<String,Object> hashtableVariableValue=new Hashtable<>();
         try {
             FileReader p1 = new FileReader(programPath);
             BufferedReader reader = new BufferedReader(p1);
@@ -78,27 +80,21 @@ public class OperatingSystem {
             }
             memory.addToReadyQueue(process);
             process.setRemainingInstructions(instructions.size());
-
+            reader.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch( IOException e) {
             System.out.println("Error reading program file: " + e.getMessage());
         }
 
+
         return instructions;
     }
 
-    public int howManyInstructions (Process process){
-        ArrayList<String> instructions= (ArrayList<String>) memory.getFromMemory(process.getMemoryBoundaries()[1]);
-        return instructions.size();
-    }
     public ArrayList<String> getProcessInstructions (Process process){
         return (ArrayList<String>) memory.getFromMemory(process.getMemoryBoundaries()[1]);
     }
 
-//    public void aykhara(){
-//        RoundRobin schedueler=new RoundRobin(memory.readyQueue,processes );
-//    }
 
     public void execute(Process process) {
         process.changeProcessState(processState.RUNNING);
@@ -106,7 +102,11 @@ public class OperatingSystem {
         int index = process.getPC();
         System.out.print("The instruction currently executing is " + instructions.get(process.getPC()));
         String[] value = instructions.get(index).split(" ");
-
+        /*7ot el variables ely hatla'eeha fel program hena ya ahmed, awel 7aga fel hashtable esm el variable w tany 7aga
+        el value bta3et el variable ma7tota as a string
+        if u wanna change the datastructure, go ahead*/
+        Hashtable<String,String> hashtableVariableValue=new Hashtable<>();
+        //actual execution
         switch (value[0]) {
             /*case "print":
                 System.out.print(value[1]);
@@ -241,6 +241,7 @@ public class OperatingSystem {
             }
 
         }
+        memory.add("Variables of the process",hashtableVariableValue,process.getMemoryBoundaries()[3]);
     }
 
     public void RoundRobin() {
@@ -261,25 +262,26 @@ public class OperatingSystem {
                 Process p2=itrB.next();
                 System.out.print("Process" + p2.getProcessID() + ", ");
             }
-            for (int i = 0; i < timeSlice; i++) {
-                if (currentProcess.getRemainingInstructions()==0) {
-                    completedProcesses.add(currentProcess);
-                    System.out.println("Processes in Ready Queue: ");
-                    for (Process p1 : readyQueue) {
-                        System.out.print("Process" + p1.getProcessID() + ", ");
-                    }
-                    System.out.println("Processes in Blocked Queue: ");
-                    itrB=memory.blockedQueue.keys().asIterator();
-                    while (itrB.hasNext()) {
-                        Process p2=itrB.next();
-                        System.out.print("Process" + p2.getProcessID() + ", ");
-                    }
+            if (currentProcess.getArrivalTime()>=currentTime)
+                for (int i = 0; i < timeSlice; i++) {
+                    if (currentProcess.getRemainingInstructions()==0) {
+                        completedProcesses.add(currentProcess);
+                        System.out.println("Processes in Ready Queue: ");
+                        for (Process p1 : readyQueue) {
+                            System.out.print("Process" + p1.getProcessID() + ", ");
+                        }
+                        System.out.println("Processes in Blocked Queue: ");
+                        itrB=memory.blockedQueue.keys().asIterator();
+                        while (itrB.hasNext()) {
+                            Process p2=itrB.next();
+                            System.out.print("Process" + p2.getProcessID() + ", ");
+                        }
 
-                    break;
+                        break;
+                    }
+                    execute(currentProcess);
+                    currentTime++;
                 }
-                execute(currentProcess);
-                currentTime++;
-            }
             if(currentProcess.getRemainingInstructions()==0){
                 completedProcesses.add(currentProcess);
                 System.out.println("Processes in Ready Queue: ");

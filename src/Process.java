@@ -11,8 +11,8 @@ public class Process {
         PCB[0]=nextProcessID++; //ProcessID
         PCB[1]=processState.NEW;
         PCB[2]=0; //program counter
-      //  this.arrivalTime = arrivalTime;
-        this.remainingInstructions = 2;
+        //this.arrivalTime = arrivalTime;
+        //this.remainingInstructions = 2;
     }
 
     public int getProcessID(){
@@ -29,16 +29,6 @@ public class Process {
     public void changeProcessState(processState processState){PCB[1]=processState;}
 
     public processState getProcessState(){return (processState) PCB[1];}
-
-    public boolean semWait(Mutex mutex){
-        return false;
-    }
-
-    public boolean semSignal(Mutex mutex){
-        return false;
-    }
-
-
 
     public int getArrivalTime() {
         return arrivalTime;
