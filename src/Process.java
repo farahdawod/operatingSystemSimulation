@@ -2,7 +2,7 @@ public class Process {
 
     private static int nextProcessID = 1;
     private Object[] PCB;
-    private int arrivalTime;
+    //private int arrivalTime;
     private int remainingInstructions;
 
 
@@ -23,20 +23,17 @@ public class Process {
         return PCB;
     }
 
-    public void setMemoryBoundaries (int[] memoryBoundaries){PCB[3]=memoryBoundaries;}
-    public int [] getMemoryBoundaries (){return (int[]) PCB[3];}
-
     public void changeProcessState(processState processState){PCB[1]=processState;}
 
     public processState getProcessState(){return (processState) PCB[1];}
 
-    public int getArrivalTime() {
+    /*//public int getArrivalTime() {
         return arrivalTime;
     }
 
     public void setArrivalTime(int arrivalTime) {
         this.arrivalTime = arrivalTime;
-    }
+    }*/
 
     public int getRemainingInstructions() {
         return remainingInstructions;
