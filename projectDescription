@@ -1,0 +1,24 @@
+Memory management was implemented. Space in the main memory was allocated for new processes. The memory and its allocation were managed. A fixed-size memory with 40 memory words was used, and it was divided into words capable of storing variables and their corresponding data.
+A naming convention was specified for variable names associated with lines of code and PCB elements. Processes were ensured to have enough space for variables (3 variables per process). 
+Cases where the memory was not large enough for all processes were handled. Existing processes were unloaded and their data was stored on the disk if there was insufficient space. Reading and writing of existing process data to/from the disk was programmed. Swapping between processes was managed while protecting each process's memory.
+
+Program syntax was identified. The syntax for the programs was established, including commands like print, assign, writeFile, readFile, and printFromTo. Input, output, and file operations were handled according to the defined syntax.
+The basic interpreter was implemented, a method named "interpreter", and the text files containing the programs were read by the operatingSystem class . 
+Processes were created upon the arrival of the program files, and memory space was assigned to each process for instructions, variables, and the Process Control Block (PCB).
+A data structure holding the PCB was created for each process, storing information such as the Process ID (assigned during creation), process state, program counter, and memory boundaries.
+Memory space was allocated for variables and the PCB, ensuring that processes did not access data outside their allocated memory block.
+
+System calls were implemented. The following system calls were added:
+   - Reading the data of any file from the disk.
+   - Writing text output to a file on the disk.
+   - Printing data on the screen.
+   - Taking text input from the user.
+   - Reading data from memory.
+   - Writing data to memory.
+
+Mutexes were implemented for mutual exclusion. Mutexes were utilized to control access to shared resources. semWait and semSignal instructions were used to acquire and release resources.
+Three mutexes were implemented for the following resources: file access (read/write), user input, and screen output.
+
+The Round Robin scheduler was implemented. A scheduler was developed to schedule processes in the Ready Queue.
+The Round Robin algorithm was utilized. Each process was assigned a fixed time slice, and two instructions were executed within that time slice.
+Queues were established, including the Ready Queue for processes waiting to execute on the processor and the Blocked Queue for processes waiting for resources to become available.
