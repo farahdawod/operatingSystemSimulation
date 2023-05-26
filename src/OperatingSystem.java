@@ -97,7 +97,7 @@ public class OperatingSystem {
         PCB[1]=processState.NEW;
         PCB[2]=0; //program counter
         PCB[3]=memoryB;
-        addToMemory("PCB of Processs"+processID,PCB,memoryB[0]);
+        addToMemory("PCB of Process "+processID,PCB,memoryB[0]);
         memory.addP(PCB);
     }
     public ArrayList<String> getProcessInstructions (int processID){
@@ -322,8 +322,8 @@ public class OperatingSystem {
 
             }
         }
-
-        addToMemory("Variables Of Process "+processID,hashtableVariableValue,getMemoryBoundaries(processID)[2]);
+        if (!hashtableVariableValue.equals(getProcessVars(processID)))
+            addToMemory("Variables Of Process "+processID,hashtableVariableValue,getMemoryBoundaries(processID)[2]);
         if (getProcessState(processID)==processState.RUNNING) changeProcessState(processID,processState.READY);
         if (getProcessState(processID)!=processState.BLOCKED)System.out.print("Instruction executed Successfully\n");
         else System.out.println("Couldn't execute instruction, Process got blocked\n");
@@ -373,7 +373,7 @@ public class OperatingSystem {
             for (int i = 0; i < timeSlice; i++) {
                 if (getProcessState(currentProcess).compareTo(processState.READY)!=0) continue;
                 interpreter(currentProcess);
-                System.out.println("End of Clock Cycle: "+(++currentTime));
+                System.out.println("End of Clock Cycle: "+(currentTime++));
                 if (getProcessInstructions(currentProcess).size()==(int)getPCBFromMemory(currentProcess)[2]) {
                     //completedProcesses.add(currentProcess);
                     readyQueue.remove(currentProcess);
@@ -395,6 +395,7 @@ public class OperatingSystem {
                     }
                     System.out.println("");
                     changeProcessState(currentProcess,processState.FINISHED);
+                    processes.put(currentProcess,processState.FINISHED.name());
                 }
                 checkIfProcessArrived();
                 printMemory();
@@ -421,6 +422,7 @@ public class OperatingSystem {
                     }
                     System.out.println("");
                     changeProcessState(currentProcess,processState.FINISHED);
+                    processes.put(currentProcess,processState.FINISHED.name());
                 }
             else if (getProcessState(currentProcess).compareTo(processState.BLOCKED)!=0){
                 readyQueue.poll();
@@ -452,6 +454,17 @@ public class OperatingSystem {
                     if (!unloadedProcesses.contains(p))
                         break;
                 }
+        }
+        else if (processes.containsValue(processState.FINISHED.name())){
+            Iterator<Integer> itrp=processes.keys().asIterator();
+            int pt;
+            while (itrp.hasNext()){
+                pt=itrp.next();
+                if (processes.get(pt).compareTo(processState.FINISHED.name())==0){
+                    p=pt;
+                    break;
+                }
+            }
         }
         else{
             for (int integer=readyQueue.size()-1 ;integer>-1;integer--) {
@@ -540,6 +553,7 @@ public class OperatingSystem {
                         PCB[2] = Integer.parseInt(g2[2]);
                         PCB[3] = Arrays.copyOfRange(premoved,1,4);
                         addToMemory("PCB Of Process "+ processID,PCB,((int [])PCB[3])[0]);
+                        getPCBFromMemory(processID)[3]=PCB[3];
                     }
                     else temp.add(line);
                 }
@@ -584,7 +598,7 @@ public class OperatingSystem {
         }catch (IOException e){
             System.out.println("An error occurred while deleting the text file contents: " + e.getMessage());
         }
-
+        getPCBFromMemory(premoved[0])[3]=null;
         return premoved[0];
     }
 

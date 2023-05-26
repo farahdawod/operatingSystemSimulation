@@ -38,11 +38,17 @@ public class Memory{
         return new int[]{i,i+1,i+2};
 
     }
+    public void replace(int index,String descriptionOfData){
+        if (memory.get(index).getTypeOfDataStored().compareTo(descriptionOfData)==0){
+            memory.remove(index);
+        }
+        return ;
+    }
 
     public void add(String descriptionOfData,Object data, int index){
         Word newData=new Word(descriptionOfData,data);
         if (memory.size()>index)
-            memory.remove(index);
+            replace(index,descriptionOfData);
         memory.add(index, newData);
     }
     public String getW(List<Integer>onD){
