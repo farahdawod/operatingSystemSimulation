@@ -1,0 +1,9 @@
+Process 2,BLOCKED,0,456,
+semWait userInput
+assign a input
+assign b input
+semSignal userInput
+semWait file
+writeFile a b
+semSignal file
+Variables 

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class SystemCalls {
 
   public DiskReader diskReader;
@@ -11,6 +13,7 @@ public class SystemCalls {
   }
 
   public void writeToDisk(String text, String filePath) {
+
     diskReader.writeToDisk(text, filePath);
     /*translation = " try { BufferedWriter wr = new BufferedWriter(new FileWriter(" + instruction[1] + ")); \n" +
             "wr.write(" + instruction[2] + ");\n" +

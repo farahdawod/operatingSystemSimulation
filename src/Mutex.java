@@ -1,4 +1,4 @@
-public class Mutex extends Process {
+public class Mutex {
     private boolean semaphore; //available
     private int processID;
     private Resource resource;
@@ -23,7 +23,6 @@ public class Mutex extends Process {
         this.semaphore = semaphore;
     }
 
-    @Override
     public int getProcessID() {
         return processID;
     }

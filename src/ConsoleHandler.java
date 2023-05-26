@@ -11,7 +11,7 @@ public class ConsoleHandler {
     printData("Please Enter your input");
     Scanner sc = new Scanner(System.in);
     String input = sc.nextLine();
-    sc.close();
+    //sc.close();
     return input;
   }
 }
